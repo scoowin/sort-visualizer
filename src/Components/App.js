@@ -62,6 +62,7 @@ function App() {
                         <option value=""></option>
                         <option value="bubbleSort">Bubble Sort</option>
                         <option value="quickSort">Quick Sort</option>
+                        <option value="selectionSort">Selection Sort</option>
                     </select>
                 </div>
                 <div className="col-12 col-sm-4 text-center">

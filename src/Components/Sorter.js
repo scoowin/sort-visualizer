@@ -4,6 +4,7 @@ import '../css/bootstrap.css';
 import randomize from '../Algorithms/randomize';
 import bubbleSort from '../Algorithms/bubbleSort';
 import quickSort from '../Algorithms/quickSort';
+import selectionSort from '../Algorithms/selectionSort';
 
 function Sorter(props) {
     const { type, length } = props;
@@ -42,6 +43,8 @@ function Sorter(props) {
             case 'quickSort':
                 timeoutArray = quickSort(width, swapWidth);
                 break;
+            case 'selectionSort':
+                timeoutArray = selectionSort(width, swapWidth);
             default:
                 break;
         }
