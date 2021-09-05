@@ -6,4 +6,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser. \
 The app currently can currently visualize \
 -Bubble Sort \
 -Quick Sort \
--Selection Sort \
+-Selection Sort
