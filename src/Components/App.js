@@ -25,6 +25,7 @@ function App() {
     }
 
     function init() {
+        //Destroy the Sorter Component and add it again so it initializes correctly
         if (sortLength !== 0 && sortType !== '') {
             setShowSorter(false);
             setTimeout(() => {

@@ -9,12 +9,18 @@ import selectionSort from '../Algorithms/selectionSort';
 function Sorter(props) {
     const { type, length } = props;
 
+    //Array for mapping to render the bars
     const [arr, setArr] = useState([]);
+
+    //Array to store width of bars
     const [width, setWidth] = useState([]);
+
     const [terminated, setTerminated] = useState(false);
 
+    //Array to store id's of animation timeouts so that they can be cleared in case of termination
     let timeoutArray = [];
 
+    //Initialize width array with random values from 1 to length of array
     const init = () => {
         let a = [];
         let w = [];
@@ -28,10 +34,12 @@ function Sorter(props) {
         setWidth(w);
     };
 
+    //Run init function on Component Mounting
     useEffect(() => {
         init();
     }, []);
 
+    //Disable Sorter initialization panel to avoid unwanted behaviours and run sort algorithm according to type selected
     const startSort = () => {
         document.getElementById('length').disabled = true;
         document.getElementById('type').disabled = true;
@@ -50,6 +58,7 @@ function Sorter(props) {
         }
     };
 
+    //Terminate sort : Disable sort control buttons and enable Sorter initialization panel
     const stopSort = () => {
         document.getElementById('length').disabled = false;
         document.getElementById('type').disabled = false;
@@ -60,17 +69,21 @@ function Sorter(props) {
         }
     };
 
+    //Function to animate the sorting of bars
     const swapWidth = (
         firstItemToBeSwapped,
         secondItemToBeSwapped,
         delay,
         clearTimeoutArray
     ) => {
+        //Animation time in ms for each animation
+        let anim_time = 500;
+
         const bars = document.getElementsByClassName('bar');
         let a = setTimeout(() => {
             bars[firstItemToBeSwapped].style.backgroundColor = 'red';
             bars[secondItemToBeSwapped].style.backgroundColor = 'red';
-        }, 500 * delay);
+        }, anim_time * delay);
         clearTimeoutArray.push(a);
         delay++;
         let b = setTimeout(() => {
@@ -78,13 +91,13 @@ function Sorter(props) {
             bars[firstItemToBeSwapped].style.width =
                 bars[secondItemToBeSwapped].style.width;
             bars[secondItemToBeSwapped].style.width = t;
-        }, 500 * delay);
+        }, anim_time * delay);
         clearTimeoutArray.push(b);
         delay++;
         let c = setTimeout(() => {
             bars[firstItemToBeSwapped].style.backgroundColor = 'turquoise';
             bars[secondItemToBeSwapped].style.backgroundColor = 'turquoise';
-        }, 500 * delay);
+        }, anim_time * delay);
         clearTimeoutArray.push(c);
     };
 
