@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import '../css/bootstrap.css';
 import randomize from '../Algorithms/randomize';
 import bubbleSort from '../Algorithms/bubbleSort';
+import quickSort from '../Algorithms/quickSort';
 
 function Sorter(props) {
-    const { type, length, sorting, setSorting } = props;
+    const { type, length } = props;
 
     const [arr, setArr] = useState([]);
     const [width, setWidth] = useState([]);
@@ -34,7 +35,16 @@ function Sorter(props) {
         document.getElementById('length').disabled = true;
         document.getElementById('type').disabled = true;
         document.getElementById('btn-init').disabled = true;
-        timeoutArray = bubbleSort(width, swapWidth);
+        switch (type) {
+            case 'bubbleSort':
+                timeoutArray = bubbleSort(width, swapWidth);
+                break;
+            case 'quickSort':
+                timeoutArray = quickSort(width, swapWidth);
+                break;
+            default:
+                break;
+        }
     };
 
     const stopSort = () => {

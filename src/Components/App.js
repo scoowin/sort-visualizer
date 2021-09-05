@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Sorter from './Sorter';
 
 import '../css/bootstrap.css';
@@ -7,7 +7,6 @@ import '../index.css';
 function App() {
     const [sortType, setSortType] = useState('');
     const [sortLength, setSortLength] = useState(0);
-    let [sorting, setSorting] = useState(false);
     const [showSorter, setShowSorter] = useState(false);
 
     function handleLengthChange(e) {
@@ -49,7 +48,6 @@ function App() {
                         id="length"
                         onChange={handleLengthChange}
                         value={sortLength}
-                        disabled={sorting}
                     />
                 </div>
                 <div className="col-12 col-sm-4 text-center">
@@ -60,31 +58,23 @@ function App() {
                         id="type"
                         onChange={handleTypeChange}
                         value={sortType}
-                        disabled={sorting}
                     >
                         <option value=""></option>
                         <option value="bubbleSort">Bubble Sort</option>
+                        <option value="quickSort">Quick Sort</option>
                     </select>
                 </div>
                 <div className="col-12 col-sm-4 text-center">
                     <button
                         className="btn btn-info p-1"
                         onClick={init}
-                        disabled={sorting}
                         id="btn-init"
                     >
                         Intialize sorter
                     </button>
                 </div>
             </div>
-            {showSorter && (
-                <Sorter
-                    type={sortType}
-                    length={sortLength}
-                    sorting={sorting}
-                    setSorting={setSorting}
-                />
-            )}
+            {showSorter && <Sorter type={sortType} length={sortLength} />}
         </div>
     );
 }
